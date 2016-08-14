@@ -1,0 +1,59 @@
+class Clock {
+  constructor() {
+    // 1. Create a Date object.
+    // 2. Store the hours, minutes, and seconds.
+    // 3. Call printTime.
+    // 4. Schedule the tick at 1 second intervals.
+    this.date = new Date ();
+    this.hours = this.date.getHours ();
+    this.minutes = this.date.getMinutes ();
+    this.seconds = this.date.getMinutes ();
+
+    setInterval(this._tick.bind(this), 1000);
+  }
+
+  printTime() {
+    // Format the time in HH:MM:SS
+    // Use console.log to print it.
+    let seconds = this.seconds;
+    if (seconds < 10) {
+      seconds = `0${seconds}`;
+    }
+
+    let minutes = this.minutes;
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+
+    let hours = this.hours;
+    if (hours < 10) {
+      hours = `0${hours}`;
+    }
+
+    console.log(`${this.hours}:${this.minutes}:${seconds}`);
+  }
+
+  _tick() {
+    // 1. Increment the time by one second.
+    // 2. Call printTime.
+    this.seconds++;
+
+    if (this.seconds === 60) {
+      this.seconds = 0;
+      this.minutes++;
+    }
+
+    if (this.minutes === 60) {
+      this.minutes = 0;
+      this.hours++;
+    }
+
+    if (this.hours === 24) {
+      this.hours = 0;
+    }
+
+    this.printTime();
+  }
+}
+
+const clock = new Clock();
